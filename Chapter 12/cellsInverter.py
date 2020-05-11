@@ -11,14 +11,14 @@ new_sheet = new_wb.active
 max_column = old_sheet.max_column
 max_row = old_sheet.max_row
 
-mainList = []
-helpList = []
+mainList = [[] for i in range(max_column)]
+#helpList = []
 
 for col in range(1, max_column+1):
     for height in range(1, max_row+1):
-        helpList.append(old_sheet.cell(column=col, row=height).value)    
-    mainList.append(helpList)
-    helpList = []
+        mainList[col-1].append(old_sheet.cell(column=col, row=height).value)    
+    #mainList.append(helpList)
+    #helpList = []
 
 for col in range(len(mainList)):
     for rw in range(len(mainList[col])):
