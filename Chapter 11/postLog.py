@@ -64,13 +64,13 @@ def creatingNew(destination, topic, message):
     print('Wiadomość wysłano pomyślnie!')
     return 1
 
-messAdress = 'szymon6457@gmail.com'
-messTopic = 'Wiadomość testowa'
-messText = '1/n2'
 
 #for testing purposes
 if len(sys.argv) != 4:
     print('Wymagany adresat, temat oraz treść')
+    messAdress = 'adress@gmai.com'
+    messTopic = 'Wiadomość testowa'
+    messText = '1/n2'
 else:
     messAdress = sys.argv[2]
     messTopic = sys.argv[3]
