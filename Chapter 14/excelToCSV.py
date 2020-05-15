@@ -1,14 +1,14 @@
 import os, csv, openpyxl
 
 path = 'C:\\Users\\Szymon\\Documents\\Python file\\pythonAttemptTwo\\csv json'
-os.chdir(path + '\\examples')
+os.chdir(os.path.join(path, 'examples'))
 
 for file in os.listdir('.'):
 
     if file.endswith('.xlsx'):
         wb = openpyxl.load_workbook(file, data_only=True)
         for sheetName in wb.sheetnames:
-            sheet = wb.get_sheet_by_name(sheetName)
+            sheet = wb.[sheetName]
             outputFile = open(os.path.join(path + '\\examplesinCSV', file+'_'+sheetName+'.csv'), 'w', newline='')
             csvWriter = csv.writer(outputFile)
 
