@@ -1,25 +1,31 @@
 import os, csv, openpyxl
 
-os.chdir('C:\\Users\\Szymon\\Documents\\Python file\\pythonAttemptTwo\\csv json')
+path = 'C:\\Users\\Szymon\\Documents\\Python file\\pythonAttemptTwo\\csv json'
+os.chdir(path + '\\examples')
 
-wb = openpyxl.load_workbook('test.xlsx', data_only=True)
-sheet = wb.active
-outputFile = open('output.csv', 'w', newline='')
-csvWriter = csv.writer(outputFile)
+for file in os.listdir('.'):
 
-max_column = sheet.max_column
-max_row = sheet.max_row
+    if file.endswith('.xlsx'):
 
-mainList = [[] for i in range(max_row)]
+        wb = openpyxl.load_workbook(file, data_only=True)
+        for sheetName in wb.sheetnames:
+            sheet = wb.get_sheet_by_name(sheetName)
+            outputFile = open(os.path.join(path + '\\examplesinCSV', file+'_'+sheetName+'.csv'), 'w', newline='')
+            csvWriter = csv.writer(outputFile)
 
-for rw in range(1, max_row+1):
-    for col in range(1, max_column+1):
-        mainList[rw-1].append(sheet.cell(column=col, row=rw).value)
+            max_column = sheet.max_column
+            max_row = sheet.max_row
 
-print(mainList)
+            mainList = [[] for i in range(max_row)]
 
-for i in mainList:
-    print(i)
-    csvWriter.writerow(i)
+            for rw in range(1, max_row+1):
+                for col in range(1, max_column+1):
+                    mainList[rw-1].append(sheet.cell(column=col, row=rw).value)
 
-outputFile.close()
+            print(mainList)
+
+            for i in mainList:
+                print(i)
+                csvWriter.writerow(i)
+
+            outputFile.close()
